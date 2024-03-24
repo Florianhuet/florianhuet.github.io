@@ -17,18 +17,30 @@
         align-items: center;
     }
     #title {
+        font-size: 24px;
+        text-align: center;
+        color: #fff;
+        margin-bottom: 10px;
+    }
+    #countdown {
         font-size: 36px;
         text-align: center;
         color: #fff;
-        margin-bottom: 20px;
-    }
-    #countdown {
-        font-size: 48px;
-        text-align: center;
-        color: #fff;
         background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-        padding: 20px;
+        padding: 15px;
         border-radius: 10px;
+    }
+
+    /* Media query for smaller screens (e.g., mobile devices) */
+    @media only screen and (max-width: 600px) {
+        #title {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        #countdown {
+            font-size: 24px;
+            padding: 10px;
+        }
     }
 </style>
 </head>
