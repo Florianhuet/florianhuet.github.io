@@ -8,21 +8,35 @@
     body {
         margin: 0;
         padding: 0;
-        font-family: Arial, sans-serif;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         background: linear-gradient(to bottom, #2980B9, #6DD5FA); /* Gradient background */
         height: 100vh;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
     }
-    #countdown {
-        font-size: 24px;
+    #title {
+        font-size: 36px;
         text-align: center;
         color: #fff;
+        margin-bottom: 20px;
+    }
+    #countdown {
+        font-size: 48px;
+        text-align: center;
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        padding: 20px;
+        border-radius: 10px;
     }
 </style>
 </head>
 <body>
+
+<div id="title">
+    Floflo is coming home 🏠 in:
+</div>
 
 <div id="countdown"></div>
 
@@ -45,7 +59,7 @@ var countdownInterval = setInterval(function() {
     var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
     
     // Display the countdown in the element with the ID "countdown"
-    document.getElementById("countdown").innerHTML = "Days: " + days + " Hours: " + hours + " Minutes: " + minutes + " Seconds: " + seconds;
+    document.getElementById("countdown").innerHTML = days + " Days " + hours + " Hours " + minutes + " Minutes " + seconds + " Seconds";
     
     // Check if the countdown has expired
     if (timeRemaining < 0) {
