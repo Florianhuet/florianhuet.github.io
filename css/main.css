@@ -318,6 +318,39 @@ img {
     transform: scale(1.05);
 }
 
+/* GravityShot Special Styling */
+.gravityshot-card {
+    background: linear-gradient(135deg, #0b0422 0%, #1a0a3e 100%);
+}
+
+.gravityshot-card .game-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0b0422 0%, #1a0a3e 100%);
+}
+
+.gravityshot-card .game-image img {
+    width: 200px;
+    height: auto;
+    object-fit: contain;
+}
+
+.gravityshot-card .game-info h3 {
+    background: linear-gradient(90deg, #ff3399, #30d5c8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.gravityshot-card .game-genre {
+    color: #30d5c8;
+}
+
+.gravityshot-card .game-description {
+    color: rgba(255, 255, 255, 0.7);
+}
+
 .game-info {
     padding: 30px;
 }
