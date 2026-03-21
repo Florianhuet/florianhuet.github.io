@@ -9,6 +9,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+    <script>
+      (function() {
+        var theme = null;
+        try { theme = localStorage.getItem('theme'); } catch(e) {}
+        if (theme === 'dark' || theme === 'light') {
+          document.documentElement.setAttribute('data-theme', theme);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -21,6 +33,10 @@
                 <li><a href="#jams">Game Jams</a></li>
                 <li><a href="#about">About</a></li>
             </ul>
+            <button class="theme-toggle" aria-label="Switch to dark mode">
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </button>
         </div>
     </nav>
 
@@ -57,28 +73,6 @@
         </div>
 
         <div class="games-grid">
-            <!-- GravityShot -->
-            <div class="game-card gravityshot-card">
-                <div class="game-image">
-                    <img src="img/gravityshot-logo.png" alt="GravityShot">
-                </div>
-                <div class="game-info">
-                    <h3>GravityShot</h3>
-                    <p class="game-genre">Puzzle / Physics / Space</p>
-                    <p class="game-description">
-                        Master the forces of gravity in this mesmerizing space puzzle game.
-                        Bend trajectories around cosmic objects, collect gravity cores,
-                        and navigate through increasingly challenging levels. One shot is all you get.
-                    </p>
-                    <div class="game-actions">
-                        <a href="https://drive.google.com/uc?export=download&id=1JlQRi8NT9ZMz2Ue81IdtqyNIJp4UEqMJ" class="store-button">
-                            <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z"/></svg>
-                            Android APK
-                        </a>
-                    </div>
-                </div>
-            </div>
-
             <!-- Aniball Finding -->
             <div class="game-card">
                 <div class="game-image">
@@ -245,6 +239,29 @@
                 navbar.classList.remove('scrolled');
             }
         });
+
+        // Theme toggle
+        const themeToggle = document.querySelector('.theme-toggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', function() {
+                const current = document.documentElement.getAttribute('data-theme');
+                const next = current === 'dark' ? 'light' : 'dark';
+
+                document.body.classList.add('theme-transitioning');
+                setTimeout(() => document.body.classList.remove('theme-transitioning'), 400);
+
+                document.documentElement.setAttribute('data-theme', next);
+                try { localStorage.setItem('theme', next); } catch(e) {}
+                themeToggle.setAttribute('aria-label',
+                    next === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
+                );
+            });
+
+            const initialTheme = document.documentElement.getAttribute('data-theme');
+            if (initialTheme === 'dark') {
+                themeToggle.setAttribute('aria-label', 'Switch to light mode');
+            }
+        }
     </script>
 </body>
 </html>
